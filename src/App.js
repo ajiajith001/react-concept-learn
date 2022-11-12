@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -9,13 +9,17 @@ function App() {
 	 */
 
 	const [name, setName] = useState("");
+	const inputRef = useRef("");
+	console.log(inputRef);
 	const resetInput = () => {
 		setName("");
+		inputRef.current.focus();
 	};
 	return (
 		<div className="App">
 			<div>
 				<input
+					ref={inputRef}
 					type="text"
 					name="name"
 					value={name}
