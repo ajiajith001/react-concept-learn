@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useMemo } from "react";
 
+const slowFunction = (num) => {
+	console.log("calling slow function");
+	for (let i = 0; i <= 4000000000; i++) {}
+	return num * 2;
+};
+
 function UseMemoExample() {
 	const [number, setNumber] = useState(0);
 	const [dark, setDark] = useState(false);
-
-	const slowFunction = (num) => {
-		console.log("calling slow function");
-		for (let i = 0; i <= 4000000000; i++) {}
-		return num * 2;
-	};
 
 	const doubleNumber = slowFunction(number);
 
