@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState, useRef } from "react";
 import "./App.css";
 
@@ -9,8 +10,14 @@ function App() {
 	 */
 
 	const [name, setName] = useState("");
+	const [counter, setCounter] = useState(0);
 	const inputRef = useRef("");
-	console.log(inputRef);
+	const previousCounterRef = useRef(0);
+
+	useEffect(() => {
+		previousCounterRef.current = counter;
+	}, [counter]);
+
 	const resetInput = () => {
 		setName("");
 		inputRef.current.focus();
@@ -28,6 +35,17 @@ function App() {
 				<button onClick={resetInput}>Reset</button>
 			</div>
 			<div>My name is {name}</div>
+			<div>
+				<h1>Random counter {counter}</h1>
+				<h2>Previous counter {previousCounterRef.current}</h2>
+				<button
+					onClick={(e) => {
+						setCounter(Math.ceil(Math.random() * 100));
+					}}
+				>
+					Generate number
+				</button>
+			</div>
 		</div>
 	);
 }
